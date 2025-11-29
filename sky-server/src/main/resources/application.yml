@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: dev
+    active: dev         #激活的是application-dev.yml配置文件
   main:
     allow-circular-references: true
   datasource:

@@ -4,6 +4,11 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+
+/*
+* @ConfigurationProperties(prefix = "sky.jwt")：表示该类中的属性将会从application.yml配置文件中以"sky.jwt"为前缀的配置项中进行绑定。
+* 为相关属性自动绑定值，简化配置管理。
+* */
 @Component
 @ConfigurationProperties(prefix = "sky.jwt")
 @Data

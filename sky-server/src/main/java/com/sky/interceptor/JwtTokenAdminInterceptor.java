@@ -1,6 +1,7 @@
 package com.sky.interceptor;
 
 import com.sky.constant.JwtClaimsConstant;
+import com.sky.context.BaseContext;
 import com.sky.properties.JwtProperties;
 import com.sky.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
@@ -33,8 +34,8 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
      */
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //1.判断当前拦截到的是Controller的方法还是其他资源
-        if(handler instanceof HandlerMethod){
-            //当前拦截到的是Controller的方法
+        if (!(handler instanceof HandlerMethod)) {
+            //当前拦截到的不是动态方法，直接放行
             return true;
         }
         //2.获取请求头中的令牌
@@ -44,8 +45,10 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
         try{
             log.info("开始校验令牌：{}", token);
             Claims claims = JwtUtil.parseJWT(jwtProperties.getAdminSecretKey(), token);
-            Long empId = Long.valueOf(claims.get(JwtClaimsConstant.USER_ID).toString());
+            //获取用户id
+            Long empId = Long.valueOf(claims.get(JwtClaimsConstant.EMP_ID).toString());
             log.info("令牌校验通过，用户id：{}", empId);
+            BaseContext.setCurrentId(empId);
             //4.放行
             return true;
         } catch (Exception ex){
