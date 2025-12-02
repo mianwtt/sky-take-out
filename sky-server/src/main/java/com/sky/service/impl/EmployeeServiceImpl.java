@@ -80,12 +80,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         String defaultPassword = DigestUtils.md5DigestAsHex("123456".getBytes());
         employee.setPassword(defaultPassword);
 
-        //设置时间
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(LocalDateTime.now());
-        //设置创建人id
-        employee.setCreateUser(BaseContext.getCurrentId());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+//        //设置时间
+//        employee.setCreateTime(LocalDateTime.now());
+//        employee.setUpdateTime(LocalDateTime.now());
+//        //设置创建人id
+//        employee.setCreateUser(BaseContext.getCurrentId());
+//        employee.setUpdateUser(BaseContext.getCurrentId());
 
         //调用Mapper层，执行插入操作
         employeeMapper.insert(employee);
@@ -104,7 +104,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         Long total = page.getTotal();
         List<Employee> records = page.getResult();
     //4、封装并返回分页结果
-        return new PageResult(total,records);
+        return new PageResult<>(total,records);
     }
 
     /**
@@ -135,10 +135,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         //属性拷贝
         BeanUtils.copyProperties(employeeDTO, employee);
 
-        //设置更新时间
-        employee.setUpdateTime(LocalDateTime.now());
-        //设置修改人id
-        employee.setUpdateUser(BaseContext.getCurrentId());
+//        //设置更新时间
+//        employee.setUpdateTime(LocalDateTime.now());
+//        //设置修改人id
+//        employee.setUpdateUser(BaseContext.getCurrentId());
 
         //调用Mapper层，执行更新操作
         employeeMapper.Update(employee);
