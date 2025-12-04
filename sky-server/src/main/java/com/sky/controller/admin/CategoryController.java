@@ -10,19 +10,14 @@ import com.sky.service.CategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("admin/category")
 @Slf4j
 @Api(tags = "分类管理")
-@Validated
 public class CategoryController {
     @Autowired
     //注意要在之前实现依赖注入
