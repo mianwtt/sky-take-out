@@ -104,5 +104,6 @@ public class DishServiceImpl implements DishService {
 //        }
         //优化为批量删除
         dishMapper.deleteByIds(ids);
+        dishFlavorMapper.deleteByDishIds(ids);
     }
 }
